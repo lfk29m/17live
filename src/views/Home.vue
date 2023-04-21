@@ -1,17 +1,56 @@
 <template>
   <div>
-    <List :data="type1"/>
-    <List :data="type2"/>
-    <List :data="type3"/>
+    <section class="block">
+      <h1>第一種寫法</h1>
+      <List :data="type1"/>
+      <List :data="type2"/>
+      <List :data="type3"/>
+    </section>
+
+    <section class="block">
+      <h1>第二種寫法</h1>
+      <List2 type="type1" :data="type1">
+        <template v-slot:default="{items}">
+          <ListItem1
+            v-for="item in items"
+            :key="item.id"
+            :item="item"
+          />
+        </template>
+      </List2>
+      <List2 type="type2" :data="type2">
+        <template v-slot:default="{items}">
+          <ListItem2
+            v-for="item in items"
+            :key="item.id"
+            :item="item"
+          />
+        </template>
+      </List2>
+      <List2 type="type3" :data="type3">
+        <template v-slot:default="{items}">
+          <ListItem3
+            v-for="item in items"
+            :key="item.id"
+            :item="item"
+          />
+        </template>
+      </List2>
+    </section>
   </div>
 </template>
 
 <script>
 import List from "@/components/list/List.vue"
+import List2 from "@/components/list/List2.vue";
 
 export default {
   name: "Home",
   components: {
+    ListItem1: () => import('@/components/list/items/ListItem1.vue'), // 動態引入, 有需要才會去加載元件
+    ListItem2: () => import('@/components/list/items/ListItem2.vue'),
+    ListItem3: () => import('@/components/list/items/ListItem3.vue'),
+    List2,
     List,
   },
   data: () => ({

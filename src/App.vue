@@ -9,6 +9,10 @@ p {
   margin: 0 0 1rem 0;
 }
 
+.block {
+  margin-bottom: 2rem;
+}
+
 .list {
   padding: 1rem;
   margin-bottom: 1rem;
